@@ -2,10 +2,13 @@
   "name": "quiz-app-vue",
   "version": "0.0.0",
   "private": true,
+  "homepage": "https://alisavlasova.github.io/quiz-app-vue/",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
@@ -23,6 +26,7 @@
     "@vue/tsconfig": "^0.1.3",
     "eslint": "^8.22.0",
     "eslint-plugin-vue": "^9.3.0",
+    "gh-pages": "^5.0.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
     "sass": "^1.58.3",
