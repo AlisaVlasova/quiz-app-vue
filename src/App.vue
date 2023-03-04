@@ -10,6 +10,7 @@ import { RouterView } from 'vue-router'
 
 <style scoped lang="scss">
 .app {
+  height: 100vh;
   max-width: 865px;
   margin: 0 auto;
   padding: 20px;

@@ -24,7 +24,6 @@ watch(answer, (newValue) => {
   	emit('answer', newValue)
 	}, 500)
 })
-
 </script>
 
 <template>
@@ -44,7 +43,7 @@ watch(answer, (newValue) => {
 				:key="option.id + question.id"
 				@click.once="answer = option"
 			>
-			  <span class="option__variant">
+				<span class="option__variant">
 					{{ option.label }}
 				</span>
 				

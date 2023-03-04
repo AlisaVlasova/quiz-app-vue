@@ -40,25 +40,45 @@ async function fetchQuizes(): Promise<void> {
 
 <template>
   <div class="quizzes">
-    <Header @search="(newVal: string) => query = newVal" />
+    <h3
+      class="quizzes__message"
+      v-if="isLoading"
+    >
+      Loading
+    </h3>
 
-    <div v-if="visibleQuizes.length" class="quizzes__ist">
-      <Card
-        v-for="quiz in visibleQuizes"
-        :key="quiz.id"
-        :quiz="quiz"
-      />
-    </div>
+    <template v-else>
+      <Header @search="(newVal: string) => query = newVal" />
+
+      <h3
+        class="quizzes__message"
+        v-if="!visibleQuizes.length"
+        >
+          Not found
+      </h3>
+
+      <div v-else class="quizzes__list">
+        <Card
+          v-for="quiz in visibleQuizes"
+          :key="quiz.id"
+          :quiz="quiz"
+        />
+      </div>
+    </template>
   </div>
 </template>
 
 <style scoped lang="scss">
 .quizzes {
+  &__message {
+    text-align: center;
+  }
+
   &__list {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 20px;
+    gap: 36px;
+    margin-top: 42px;
   }
 }
 </style>

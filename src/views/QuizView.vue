@@ -76,11 +76,13 @@ function handleAnswer(answer: Option): void {
           :totalQuestionsCount="quiz.questions.length"
           :currentQuestionId="currentQuestionId"
         />
-        <Question
-          :key="currentQuestionId"
-          :question="currentQuestion"
-          @answer="handleAnswer"
-        />
+        <TransitionGroup name="list">
+          <Question
+            :key="currentQuestionId"
+            :question="currentQuestion"
+            @answer="handleAnswer"
+          />
+        </TransitionGroup>
       </template>
     </template>
   </div>
@@ -89,9 +91,11 @@ function handleAnswer(answer: Option): void {
 <style scoped lang="scss">
 .quiz {
   text-align: center;
+  width: 100%;
+  position: relative;
 
   &__header {
-    margin-bottom: 28px;
+    margin-bottom: 42px;
   }
 
   &__button {
@@ -103,6 +107,30 @@ function handleAnswer(answer: Option): void {
     border-radius: 4px;
     color: var(--color-text);
     text-decoration: none;
+  }
+
+  .list-move, /* apply transition to moving elements */
+  .list-leave-active {
+    transition: all 0.5s ease;
+  }
+
+  .list-enter-active {
+    transition: all 2s ease;
+  }
+
+  .list-enter-from {
+    opacity: 0;
+  }
+  .list-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  /* ensure leaving items are taken out of layout flow so that moving
+    animations can be calculated correctly. */
+  .list-leave-active {
+    position: absolute;
+    width: 100%;
   }
 }
 </style>
